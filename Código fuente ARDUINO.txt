@@ -1,0 +1,176 @@
+long distancia;
+long tiempo;
+char command;
+String string;
+boolean ledon = false;
+
+void setup() {
+  //MOTORES
+  pinMode(6, OUTPUT); //Definimos los pines digitales como salidas
+  pinMode(3, OUTPUT); 
+  pinMode(9, OUTPUT); 
+  pinMode(5, OUTPUT);
+
+  //ULTRASONIDO
+  Serial.begin(9600);
+  pinMode(12, OUTPUT); /*activación del pin 9 como salida: para el pulso ultrasónico*/
+  pinMode(10, INPUT);
+
+  //LED
+  pinMode(4, OUTPUT);   //Amarillo
+  pinMode(7, OUTPUT);   //Rojo
+  pinMode(2, OUTPUT);   //Verde
+
+  //BLUETOOTH
+  Serial.begin(9600);
+}
+
+void loop() { 
+    //ESTABLECEMOS LA CONEXION
+     if (Serial.available() > 0) 
+    {string = "";}
+    
+    while(Serial.available() > 0)
+    {
+      command = ((byte)Serial.read());
+      
+      if(command == ':')
+      {
+        break;
+      }
+      
+      else
+      {
+        string += command;
+      }
+      
+      delay(1);
+    }   
+
+  digitalWrite(12,LOW); /* Por cuestión de estabilización del sensor*/
+  delayMicroseconds(5);
+  digitalWrite(12, HIGH); /* envío del pulso ultrasónico*/
+  delayMicroseconds(10);
+  tiempo = pulseIn(10, HIGH); 
+  distancia = int(0.017*tiempo); /*fórmula para calcular la distancia obteniendo un valor entero*/
+if(string =="1" || string =="2" || string=="3" || string=="4" || string=="5" || string=="6")
+{     
+    if(string == "2") //ADELANTE
+    {
+      digitalWrite(4,LOW); //Apagamos los led
+      digitalWrite(7,LOW); //Apagamos los led
+      delay(10);
+      digitalWrite(2,HIGH); //Encendemos el pin verde
+    
+      digitalWrite(6,HIGH); //Para adelante
+      digitalWrite(9,LOW);
+      digitalWrite(3,LOW);    
+      digitalWrite(5,HIGH);
+    }
+
+    if(string == "1") //ATRAS
+    {
+      digitalWrite(4,LOW); //Apagamos los led
+      digitalWrite(7,LOW); //Apagamos los led
+      delay(10);
+      digitalWrite(2,HIGH); //Encendemos el pin verde
+    
+      digitalWrite(6,LOW); //Para adelante
+      digitalWrite(9,HIGH);
+      digitalWrite(3,HIGH);    
+      digitalWrite(5,LOW);
+    }
+
+
+     if(string == "4") //IZQUIERDA
+    {
+      digitalWrite(4,LOW); //Apagamos los led
+      digitalWrite(7,LOW); //Apagamos los led
+      delay(10);
+      digitalWrite(2,HIGH); //Encendemos el pin verde
+    
+      digitalWrite(6,HIGH); //Para adelante
+      digitalWrite(9,LOW);
+      digitalWrite(3,LOW);    
+      digitalWrite(5,LOW);
+    }
+
+
+     if(string == "3") //DERECHA
+    {
+      digitalWrite(4,LOW); //Apagamos los led
+      digitalWrite(7,LOW); //Apagamos los led
+      delay(10);
+      digitalWrite(2,HIGH); //Encendemos el pin verde
+    
+      digitalWrite(6,LOW); //Para adelante
+      digitalWrite(9,LOW);
+      digitalWrite(3,LOW);    
+      digitalWrite(5,HIGH);
+    }
+     if(string == "5")
+          { digitalWrite(4,HIGH); //Apagamos los led
+            digitalWrite(2,LOW); //Apagamos los led
+            digitalWrite(7,LOW); //Encendemos el led rojo
+        
+            digitalWrite(6,LOW);  //Frenamos
+            digitalWrite(9,LOW);
+            digitalWrite(3,LOW);       
+            digitalWrite(5,LOW);
+           }
+
+      if( string =="6") //PILOTO AUTOMATICO
+
+      {
+            if( distancia > 40)
+                {
+                  digitalWrite(4,LOW); //Apagamos los led
+                  digitalWrite(7,LOW); //Apagamos los led
+                  delay(10);
+                  digitalWrite(2,HIGH); //Encendemos el pin verde
+    
+                  digitalWrite(6,HIGH); //Para adelante
+                  digitalWrite(9,LOW);
+                  digitalWrite(3,LOW);    
+                  digitalWrite(5,HIGH);
+                }
+
+        else
+              {
+                  digitalWrite(4,LOW); //Apagamos los led
+                  digitalWrite(2,LOW); //Apagamos los led
+                  digitalWrite(7,HIGH); //Encendemos el led rojo  
+
+                  digitalWrite(6,LOW);  //Frenamos
+                  digitalWrite(9,LOW);
+                  digitalWrite(3,LOW);       
+                  digitalWrite(5,LOW);
+                  delay(100);
+       
+                  digitalWrite(6,HIGH);  //Giramos
+                  digitalWrite(9,LOW);
+                  digitalWrite(3,HIGH);       
+                  digitalWrite(5,LOW);
+                  delay(500);
+              }
+      }
+
+       
+   }
+   else
+   
+   {
+        digitalWrite(4,HIGH); //Apagamos los led
+        digitalWrite(2,LOW); //Apagamos los led
+        digitalWrite(7,LOW); //Encendemos el led rojo
+        
+        digitalWrite(6,LOW);  //Frenamos
+        digitalWrite(9,LOW);
+        digitalWrite(3,LOW);       
+        digitalWrite(5,LOW);
+   
+    
+    
+    }
+
+  }
