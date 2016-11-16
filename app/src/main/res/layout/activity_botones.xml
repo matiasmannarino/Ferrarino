@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_botones"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@drawable/bg_gradient"
+    tools:context="com.example.mana.myapplication.Botones">
+
+    <Button
+        android:id="@+id/leftArrow"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:background="@drawable/left_arrow_ios"
+        android:layout_alignBottom="@+id/stopSignal"
+        android:layout_alignTop="@+id/stopSignal"
+        android:layout_toLeftOf="@+id/upArrow"
+        android:layout_toStartOf="@+id/upArrow" /> <!-- leftArrow -->
+
+    <Button
+        android:id="@+id/rightArrow"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:background="@drawable/right_arrow_ios"
+        android:layout_alignBottom="@+id/stopSignal"
+        android:layout_alignTop="@+id/stopSignal"
+        android:layout_toRightOf="@+id/upArrow"
+        android:layout_toEndOf="@+id/upArrow" /> <!-- rightArrow -->
+
+    <Button
+        android:id="@+id/downArrow"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:background="@drawable/down_arrow_ios"
+        android:elevation="24dp"
+        android:layout_below="@+id/stopSignal"
+        android:layout_toRightOf="@+id/leftArrow"
+        android:layout_toEndOf="@+id/leftArrow" /><!-- downArrow -->
+
+    <Button
+        android:id="@+id/upArrow"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:background="@drawable/up_arrow_ios"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" /> <!-- upArrow -->
+
+    <Button
+        android:id="@+id/stopSignal"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:background="@drawable/stop_signal"
+        android:layout_below="@+id/upArrow"
+        android:layout_toRightOf="@+id/leftArrow"
+        android:backgroundTint="@color/colorStop" /> <!-- stopSignal -->
+
+    <!-- microphone -->
+
+    <Button
+        android:id="@+id/activarAcelerometro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ACELERÓMETRO"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp"
+        android:background="@drawable/my_button_bg"
+        android:onClick="activarAcelerometro"
+        android:layout_marginBottom="22dp"
+        android:elevation="0dp"
+        android:layout_above="@+id/bluetooth"
+        android:layout_alignLeft="@+id/bluetooth"
+        android:layout_alignStart="@+id/bluetooth"
+        android:layout_alignRight="@+id/bluetooth"
+        android:layout_alignEnd="@+id/bluetooth" /> <!-- acelerómetro -->
+
+    <Button
+        android:id="@+id/bluetooth"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="PILOTO AUTOMÁTICO"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp"
+        android:background="@drawable/my_button_bg"
+        android:onClick="activarBluetooth"
+        android:elevation="0dp"
+        android:layout_marginBottom="15dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignLeft="@+id/leftArrow"
+        android:layout_alignStart="@+id/leftArrow"
+        android:layout_alignRight="@+id/rightArrow"
+        android:layout_alignEnd="@+id/rightArrow" />
+
+    <ImageButton
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:id="@+id/btnSpeak"
+        android:background="@drawable/microphone"
+        android:layout_above="@+id/activarAcelerometro"
+        android:layout_alignLeft="@+id/downArrow"
+        android:layout_alignStart="@+id/downArrow"
+        android:layout_marginBottom="29dp" /> <!-- piloto automático -->
+
+</RelativeLayout>
